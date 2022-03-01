@@ -21,6 +21,6 @@ public class Categoria {
 	@EqualsAndHashCode.Include
 	private Long id;
 	
-	private Long nome;
+	private String nome;
 
 }

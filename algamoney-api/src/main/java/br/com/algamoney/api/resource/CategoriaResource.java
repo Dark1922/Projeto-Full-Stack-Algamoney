@@ -2,7 +2,11 @@ package br.com.algamoney.api.resource;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +22,13 @@ public class CategoriaResource {
 	private final CategoriaRepository categoriaRepository;
 	
 	@GetMapping
-	public List<Categoria> findAll() {
-		return categoriaRepository.findAll();
+	public ResponseEntity<List<Categoria>>  findAll() {
+		return  ResponseEntity.ok(categoriaRepository.findAll());
+	}
+	
+	@PostMapping
+	public ResponseEntity<Categoria> saveCategoria(@RequestBody Categoria caregoria) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(caregoria));
 	}
 }
+	
