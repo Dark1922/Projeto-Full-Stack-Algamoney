@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class CategoriaResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Categoria> saveCategoria(@RequestBody Categoria caregoria, HttpServletResponse response) {
+	public ResponseEntity<Categoria> saveCategoria(@RequestBody @Valid Categoria caregoria, HttpServletResponse response) {
 		Categoria categoriaSalva = categoriaRepository.save(caregoria);
 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
